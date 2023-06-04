@@ -1,21 +1,23 @@
 import { useState } from "react";
 import "./App.css";
+import InputTask from "./components/InputTask";
 
 interface TodoState {
   tasks: Array<string>;
-  taskName: string;
 }
 
 function App() {
   const [tasks, setTasks] = useState<TodoState["tasks"]>([]);
-  const [taskName, setTaskName] = useState<TodoState["taskName"]>("");
+
+  const handlerNewTask = (newTask: string): void => {
+    setTasks([...tasks, newTask]);
+  };
   return (
     <>
-      <div>Todo</div>
-      <div></div>
-      {tasks.map((task, index) => {
-        return <p key={index}>{task}</p>;
-      })}
+      <h1>todos</h1>
+      <div className="tareas">
+        <InputTask onNewTask={handlerNewTask} />
+      </div>
     </>
   );
 }
