@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import InputTask from "./components/InputTask";
+import ListTask from "./components/ListTask";
 
 interface TodoState {
   tasks: Array<string>;
@@ -17,6 +18,7 @@ function App() {
       <h1>todos</h1>
       <div className="tareas">
         <InputTask onNewTask={handlerNewTask} />
+        <ListTask tasks={tasks} />
       </div>
     </>
   );
