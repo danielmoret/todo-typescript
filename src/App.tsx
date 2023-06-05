@@ -23,7 +23,12 @@ function App() {
       <h1>todos</h1>
       <div className="tareas">
         <InputTask onNewTask={handlerNewTask} />
-        <ListTask tasks={tasks} onDelete={handlerDeleteTask} />
+        {tasks.map((task, index) => {
+          return (
+            <ListTask task={task} index={index} onDelete={handlerDeleteTask} />
+          );
+        })}
+
         <span className="item-left">
           {tasks.length > 0
             ? tasks.length + " item left"

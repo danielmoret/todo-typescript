@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 interface ListProps {
-  tasks: string[];
+  task: string;
+  index: number;
   onDelete: (indexTask: number) => void;
 }
 
@@ -9,34 +10,28 @@ interface ListState {
   activeButton: boolean;
 }
 
-function ListTask({ tasks, onDelete }: ListProps) {
+function ListTask({ task, onDelete, index }: ListProps) {
   const [activeButton, setActiveButton] =
     useState<ListState["activeButton"]>(false);
   return (
-    <>
-      {tasks.map((task, index) => {
-        return (
-          <div
-            key={index}
-            className="tarea"
-            onMouseOver={() => {
-              setActiveButton(true);
-            }}
-            onMouseOut={() => {
-              setActiveButton(false);
-            }}
-          >
-            <span>{task}</span>
-            <span
-              className={activeButton ? "red" : "disabled"}
-              onClick={() => onDelete(index)}
-            >
-              X
-            </span>
-          </div>
-        );
-      })}
-    </>
+    <div
+      key={index}
+      className="tarea"
+      onMouseOver={() => {
+        setActiveButton(true);
+      }}
+      onMouseOut={() => {
+        setActiveButton(false);
+      }}
+    >
+      <span>{task}</span>
+      <span
+        className={activeButton ? "red" : "disabled"}
+        onClick={() => onDelete(index)}
+      >
+        X
+      </span>
+    </div>
   );
 }
 
