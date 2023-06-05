@@ -24,6 +24,11 @@ function App() {
       <div className="tareas">
         <InputTask onNewTask={handlerNewTask} />
         <ListTask tasks={tasks} onDelete={handlerDeleteTask} />
+        <span className="item-left">
+          {tasks.length > 0
+            ? tasks.length + " item left"
+            : "No tasks, add a task"}
+        </span>
       </div>
     </>
   );

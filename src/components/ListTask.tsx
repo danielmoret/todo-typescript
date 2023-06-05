@@ -2,7 +2,7 @@ import { useState } from "react";
 
 interface ListProps {
   tasks: string[];
-  onDelete: (deleteTask: number) => void;
+  onDelete: (indexTask: number) => void;
 }
 
 interface ListState {
