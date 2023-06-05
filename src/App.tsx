@@ -13,12 +13,17 @@ function App() {
   const handlerNewTask = (newTask: string): void => {
     setTasks([...tasks, newTask]);
   };
+
+  const handlerDeleteTask = (index: number): void => {
+    setTasks(tasks.filter((task, i) => i !== index));
+  };
+
   return (
     <>
       <h1>todos</h1>
       <div className="tareas">
         <InputTask onNewTask={handlerNewTask} />
-        <ListTask tasks={tasks} />
+        <ListTask tasks={tasks} onDelete={handlerDeleteTask} />
       </div>
     </>
   );

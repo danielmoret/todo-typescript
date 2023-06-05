@@ -1,14 +1,42 @@
+import { useState } from "react";
+
 interface ListProps {
   tasks: string[];
+  onDelete: (deleteTask: number) => void;
 }
 
-function ListTask({ tasks }: ListProps) {
+interface ListState {
+  activeButton: boolean;
+}
+
+function ListTask({ tasks, onDelete }: ListProps) {
+  const [activeButton, setActiveButton] =
+    useState<ListState["activeButton"]>(false);
   return (
-    <div>
-      {tasks.map((task) => {
-        return <p>{task}</p>;
+    <>
+      {tasks.map((task, index) => {
+        return (
+          <div
+            key={index}
+            className="tarea"
+            onMouseOver={() => {
+              setActiveButton(true);
+            }}
+            onMouseOut={() => {
+              setActiveButton(false);
+            }}
+          >
+            <span>{task}</span>
+            <span
+              className={activeButton ? "red" : "disabled"}
+              onClick={() => onDelete(index)}
+            >
+              X
+            </span>
+          </div>
+        );
       })}
-    </div>
+    </>
   );
 }
 
